@@ -3,12 +3,19 @@ import PokemonCard from './PokemonCard'
 import { Card } from 'semantic-ui-react'
 
 class PokemonCollection extends React.Component {
-  render() {
+  render () {
     return (
       <Card.Group itemsPerRow={6}>
-        <h1>Hello From Pokemon Collection</h1>
+        { this.createPokemonCards() }
       </Card.Group>
     )
+  }
+
+  createPokemonCards = () => {
+    return this.props.pokemon.map((pokemon, index) => {
+      if(pokemon.name.includes(this.props.search))
+        return <PokemonCard key={index} pokemon={pokemon} />
+    })
   }
 }
 
